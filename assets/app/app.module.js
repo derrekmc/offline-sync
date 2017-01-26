@@ -8,9 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const platform_browser_1 = require('@angular/platform-browser');
-const app_component_1 = require('./app.component');
+const core_1 = require("@angular/core");
+const platform_browser_1 = require("@angular/platform-browser");
+const app_component_1 = require("./app.component");
+// import {SailsService} from "angular2-sails/dist/index";
+// import {SailsMessageService} from "./services/SailsMessage.Service";
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -18,8 +20,8 @@ AppModule = __decorate([
         declarations: [app_component_1.AppComponent],
         imports: [platform_browser_1.BrowserModule],
         bootstrap: [app_component_1.AppComponent],
-    }), 
-    __metadata('design:paramtypes', [])
+    }),
+    __metadata("design:paramtypes", [])
 ], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

@@ -1,0 +1,37 @@
+
+
+<section class="container"  >
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+      <div class="col-lg-12">
+        <h2>Check Lists</h2>
+        <ol class="breadcrumb">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a class="active" href="/checklists">Check Lists</a>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="well" >
+      <div class="list-group " >
+
+        <a [hidden]="!checkLists.length" *ngFor="let checkList of checkLists " href="#/checklist/{{checkList.id}}" class="list-group-item clearfix"   >
+          <span class="col-xs-2 col-sm-1">
+            <img height="40" src="images/checklist-color2.png">
+          </span>
+          <span class="col-xs-10 col-sm-11">
+            <h5  >{{checkList.name}}</h5>
+          </span>
+        </a>
+
+      </div>
+
+
+      <div class="clearfix"></div>
+    </div>
+
+</section>

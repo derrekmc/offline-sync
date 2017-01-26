@@ -8,15 +8,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
+const CheckList_Model_1 = require("./models/CheckList.Model");
 let AppComponent = class AppComponent {
+    //public dataService: any;
+    // constructor(data: SailsMessageService) {
+    //     this.dataService = data;
+    // }
+    ngOnInit() {
+        //this.checkLists = this.dataService.get('/checklist');
+        //this.checkLists = CheckList.read();
+        CheckList_Model_1.CheckList.create({
+            name: "Personal Hygiene",
+            checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"]
+        }).create({
+            name: "Personal Hygiene 2",
+            checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"]
+        }).create({
+            name: "Personal Hygiene 3",
+            checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"],
+            inProgress: true
+        }).create({
+            name: "Employee Hygeine",
+            checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"]
+        }).destroy("0");
+        this.checkLists = CheckList_Model_1.CheckList.find({ 'inProgress': false });
+        //this.checkLists = [CheckList.findOne("1")];
+    }
 };
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: '<h1>My First Angular 2 Sails App</h1>'
-    }), 
-    __metadata('design:paramtypes', [])
+        templateUrl: './app/app.component.html'
+    }),
+    __metadata("design:paramtypes", [])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
