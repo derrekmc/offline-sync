@@ -2,54 +2,50 @@ import { StoreInterface } from "../interfaces/Store.Interface";
 
 export class Store implements StoreInterface {
 
-    private _nameSpace: string;
-    private _collections: any;
-    public cloudStoreUrl : string;
+    private _name: string;
+    private _collections: any[] = [];
+    public cloudStoreUrl : string = "";
+    private delimiter: string = '_';
 
-    public adapter: StoreInterface;
-
-    constructor(namespace: string, storeAdapter: StoreInterface){
-        this.adapter = storeAdapter;
+    constructor(dbName: string){
+        this._name = dbName;
     }
 
-    create(key: string, object: Object) {
-        return this.adapter.create(key, object);
+    write(collection: string, object: Object) {
+        this.setItem(collection, JSON.stringify(object));
+        return object;
     }
 
-    read(key: string): any {
-        return this.adapter.read(key);
+    create(collection: string, object: Object) {
+        this.setItem(collection, JSON.stringify(object));
+        return object;
     }
 
-    update(key: string, object: Object) {
-        return this.adapter.update(key, object);
+    read(collection: string): any {
+        var result = JSON.parse(this.getItem(collection));
+        if(result == null) {
+            console.log("no results")
+            result = [];
+        }
+        return result;
     }
 
-    destroy(key: string) {
-        return this.adapter.destroy(key);
+    update(collection: string, key: string, object: Object) {
+        this.setItem(collection+this.delimiter+key, object);
+        return object;
     }
 
-    post(uri: string, object: any) {
-        return this.adapter.create(uri, object);
+    destroy(collection, key: string) {
+        this.removeItem(collection+this.delimiter+key);
+        return true;
     }
 
-    get(uri: string) {
-        return this.adapter.read(uri);
-    }
-
-    put(uri: string, object: any) {
-        return this.adapter.update(uri, object);
-    }
-
-    delete(uri: string) {
-        return this.adapter.destroy(uri);
-    }
-
-    setItem(key: string, object: any) {
-        return localStorage.setItem(key, object);
+    setItem(key: string, data: any) {
+        localStorage.setItem(key, JSON.stringify(data));
     }
 
     getItem(key: string): any {
-        return localStorage.getItem(key);
+        return JSON.parse(localStorage.getItem(key));
     }
 
     removeItem(key: string) {

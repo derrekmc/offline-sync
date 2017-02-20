@@ -1,37 +1,44 @@
+<section class="container">
 
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+      <h2>Check Lists</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a class="active" href="/checklists">Check Lists</a>
+        </li>
+      </ol>
+    </div>
+  </div>
 
-<section class="container"  >
+  <div class="input-group" id="adv-search">
 
-    <div class="row wrapper border-bottom white-bg page-heading">
-      <div class="col-lg-12">
-        <h2>Check Lists</h2>
-        <ol class="breadcrumb">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a class="active" href="/checklists">Check Lists</a>
-          </li>
-        </ol>
+    <input class="form-control" placeholder="Search for checklists" type="text" >
+    <div class="input-group-btn">
+      <div class="btn-group" role="group">
+        <button class="btn btn-primary " type="button" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>" ><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
       </div>
     </div>
+  </div>
 
-    <div class="well" >
-      <div class="list-group " >
+  <hr>
+  <div class=""></div>
 
-        <a [hidden]="!checkLists.length" *ngFor="let checkList of checkLists " href="#/checklist/{{checkList.id}}" class="list-group-item clearfix"   >
-          <span class="col-xs-2 col-sm-1">
-            <img height="40" src="images/checklist-color2.png">
-          </span>
-          <span class="col-xs-10 col-sm-11">
-            <h5  >{{checkList.name}}</h5>
-          </span>
-        </a>
-
-      </div>
-
-
-      <div class="clearfix"></div>
+  <div class="well" >
+    <div class="list-group " >
+      <a [hidden]="!checkLists.length" *ngFor="let checkList of checkLists" href="#/checklist/{{checkList.id}}" class="list-group-item clearfix"   >
+        <span class="col-xs-2 col-sm-1">
+          <img height="40" src="images/checklist-color2.png">
+        </span>
+        <span class="col-xs-10 col-sm-11">
+          <h5  >{{checkList.name}}</h5>
+        </span>
+      </a>
     </div>
+    <div class="clearfix"></div>
+  </div>
 
 </section>

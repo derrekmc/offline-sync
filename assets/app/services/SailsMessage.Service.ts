@@ -23,9 +23,9 @@ export class SailsMessageService implements SailsService, MessageInterface {
 
     read(url: any, data?: any): Observable<any[]> {
         return this.socket.get(url).map((resData) => { this.data$ = resData.data; return this.data$;},
-            (error) => { console.log("error occured", error) }
+            (error) => { console.log("error occured", error) },
             () => { console.log("finished retrieval") }
-    )
+            )
 
     }
 
