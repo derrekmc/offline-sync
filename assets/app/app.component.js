@@ -13,30 +13,46 @@ const CheckList_Model_1 = require("./models/CheckList.Model");
 let AppComponent = class AppComponent {
     constructor(zone) {
         this.zone = zone;
+        this.connected = false;
+        this.connected = false;
     }
-    ngOnInit() {
-        CheckList_Model_1.CheckList.init((model, collection) => {
-            this.checkLists = collection;
+    find(value) {
+        let search = (value ? { name: value } : {});
+        this.checkLists = CheckList_Model_1.CheckList.find(search, (result, collection) => {
+            this.checkLists = result;
             this.zone.run(() => { });
         });
-        // CheckList.create({
-        //     name: "Offline Creation Personal Hygiene",
-        //     checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"],
-        //     id: "123"
-        // }).create({
-        //     name: "Offline Creation Personal Hygiene 2",
-        //     checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"]
-        // }).create({
-        //     name: "Offline Creation Personal Hygiene 3",
-        //     checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"],
-        //     inProgress: true
-        // }).create({
-        //     name: "Offline Creation Employee Hygeine",
-        //     checks: ["58530d487f3cb5110007aaec", "58530d49882ee3110090a46e"]
-        // })//.destroy("0");
-        this.checkLists = CheckList_Model_1.CheckList.find({ id: "588fc6e886f662f9917b50f0" });
+    }
+    contains(value) {
+        let search = (value ? { name: value } : {});
+        this.checkLists = CheckList_Model_1.CheckList.contains("name", value, (result, collection) => {
+            this.checkLists = result;
+            this.zone.run(() => { });
+        });
+    }
+    ngOnInit() {
+        addEventListener("socket.connected", (event) => {
+            console.log(event.type, "socket.connected!");
+            this.connected = true;
+            this.zone.run(() => { });
+        });
+        addEventListener("socket.disconnected", (event) => {
+            console.log(event.type, "socket.disconnected!");
+            this.connected = false;
+            this.zone.run(() => { });
+        });
+        // CheckList.init((model, collection) => {
+        //     console.log("init");
+        //     this.checkLists = collection;
+        //     this.zone.run(()=>{})
+        // });
+        this.checkLists = CheckList_Model_1.CheckList.find({});
     }
 };
+__decorate([
+    core_1.Input,
+    __metadata("design:type", String)
+], AppComponent.prototype, "search", void 0);
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',

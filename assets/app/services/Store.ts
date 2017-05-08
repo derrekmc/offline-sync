@@ -12,17 +12,19 @@ export class Store implements StoreInterface {
     }
 
     write(collection: string, object: Object) {
-        this.setItem(collection, JSON.stringify(object));
+        this.setItem(collection, object);
         return object;
     }
 
-    create(collection: string, object: Object) {
-        this.setItem(collection, JSON.stringify(object));
+    create(collection: string, key: string, object: Object) {
+        this.setItem(collection + this.delimiter + key, object);
         return object;
     }
 
-    read(collection: string): any {
-        var result = JSON.parse(this.getItem(collection));
+    read(collection: string): any
+    read(collection: string, key: string): any {
+
+        var result = this.getItem(collection);
         if(result == null) {
             console.log("no results")
             result = [];
@@ -31,21 +33,21 @@ export class Store implements StoreInterface {
     }
 
     update(collection: string, key: string, object: Object) {
-        this.setItem(collection+this.delimiter+key, object);
+        this.setItem(collection + this.delimiter + key, object);
         return object;
     }
 
     destroy(collection, key: string) {
-        this.removeItem(collection+this.delimiter+key);
+        this.removeItem(collection + this.delimiter + key);
         return true;
     }
 
     setItem(key: string, data: any) {
-        localStorage.setItem(key, JSON.stringify(data));
+        localStorage.setItem(this._name + this.delimiter + key, JSON.stringify(data));
     }
 
     getItem(key: string): any {
-        return JSON.parse(localStorage.getItem(key));
+        return JSON.parse(localStorage.getItem(this._name + this.delimiter + key));
     }
 
     removeItem(key: string) {

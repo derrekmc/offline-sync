@@ -1,6 +1,7 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { AppComponent }   from './app.component';
+import { FormsModule }   from '@angular/forms';
 
 // import {SailsService} from "angular2-sails/dist/index";
 // import {SailsMessageService} from "./services/SailsMessage.Service";
@@ -8,7 +9,7 @@ import { AppComponent }   from './app.component';
 
 @NgModule({
     declarations: [AppComponent],
-    imports:      [BrowserModule],
+    imports:      [BrowserModule, FormsModule],
     bootstrap:    [AppComponent],
     // providers: [SailsMessageService, SailsService]
 })

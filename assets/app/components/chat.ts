@@ -3,6 +3,7 @@ import { CheckList } from './models/CheckList.Model'
 import { Observable } from "rxjs/Rx";
 import {NgForm} from '@angular/forms';
 
+
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html'
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit{
 
     public checkLists: any[];
     @Input search: string;
+    check: any = {};
     public connected: boolean = false;
 
     constructor(public zone: NgZone) {
@@ -24,6 +26,20 @@ export class AppComponent implements OnInit{
             this.checkLists = result;
             this.zone.run(()=>{})
         });
+    }
+
+    delete(id: string){
+        this.checkLists = CheckList.destroy(id, (result, collection)=>{
+            this.checkLists = collection;
+            this.zone.run(()=>{})
+        });
+    }
+
+    add(value: string){
+        let search = (value? {name: value} : {});
+
+        CheckList.create({name: value});
+
     }
 
     contains(value: string){
@@ -49,13 +65,15 @@ export class AppComponent implements OnInit{
             this.zone.run(()=>{})
         });
 
-        // CheckList.init((model, collection) => {
-        //     console.log("init");
-        //     this.checkLists = collection;
-        //     this.zone.run(()=>{})
-        // });
+        CheckList.init((model, collection) => {
+            console.log("init");
+            this.checkLists = collection;
+            this.zone.run(()=>{})
+        });
 
         this.checkLists = CheckList.find({});
+
+
 
     }
 

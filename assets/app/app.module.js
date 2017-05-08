@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
+const forms_1 = require("@angular/forms");
 // import {SailsService} from "angular2-sails/dist/index";
 // import {SailsMessageService} from "./services/SailsMessage.Service";
 let AppModule = class AppModule {
@@ -18,7 +19,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     core_1.NgModule({
         declarations: [app_component_1.AppComponent],
-        imports: [platform_browser_1.BrowserModule],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
         bootstrap: [app_component_1.AppComponent],
     }),
     __metadata("design:paramtypes", [])

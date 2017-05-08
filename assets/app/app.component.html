@@ -1,5 +1,6 @@
 <section class="container">
-
+  <div [hidden]="!connected" ><div class="pull-right label label-success" style=" margin-top:10px; " >Online <i class=" fa fa-connectdevelop fa-spin fa-1x fa-fw "></i></div></div>
+  <div [hidden]="connected" ><div class="pull-right label label-danger" style=" margin-top:10px; " >Offine <i class=" fa fa-frown-o  fa-1x fa-fw "></i></div></div>
   <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
       <h2>Check Lists</h2>
@@ -14,12 +15,14 @@
     </div>
   </div>
 
+
+
   <div class="input-group" id="adv-search">
 
-    <input class="form-control" placeholder="Search for checklists" type="text" >
+    <input #myInput [(ngModel)]="search" (ngModelChange)="contains(myInput.value)" class="form-control" placeholder="Search for checklists" type="text"  >
     <div class="input-group-btn">
       <div class="btn-group" role="group">
-        <button class="btn btn-primary " type="button" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>" ><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+        <button class="btn btn-primary " type="button" id="load" (click)="find(myInput.value)" data-loading-text="<i class='fa fa-spinner fa-spin '></i>" ><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
       </div>
     </div>
   </div>
@@ -27,16 +30,21 @@
   <hr>
   <div class=""></div>
 
-  <div class="well" >
+  <div  class="well" >
     <div class="list-group " >
       <a [hidden]="!checkLists.length" *ngFor="let checkList of checkLists" href="#/checklist/{{checkList.id}}" class="list-group-item clearfix"   >
         <span class="col-xs-2 col-sm-1">
           <img height="40" src="images/checklist-color2.png">
         </span>
-        <span class="col-xs-10 col-sm-11">
+        <span class="col-xs-10 col-sm-11" style="overflow: hidden;">
           <h5  >{{checkList.name}}</h5>
         </span>
       </a>
+
+      <span [hidden]="checkLists.length" class="col-xs-10 col-sm-11">
+        <h5  >No Search Results</h5>
+      </span>
+
     </div>
     <div class="clearfix"></div>
   </div>
