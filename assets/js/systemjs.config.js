@@ -15,7 +15,8 @@
     'angular2-uuid':              'node_modules/angular2-uuid',
     'lodash':                     'node_modules/lodash',
     'minimongo':                     'node_modules/minimongo',
-
+      'moment':                     'node_modules/moment',
+      'mongodb':                     'node_modules/mongodb',
 
   };
   // packages tells the System loader how to load when no filename and/or no extension
@@ -28,6 +29,8 @@
     'angular2-sails':             { main: 'index.js', defaultExtension: 'js' },
     'lodash':                     { main: 'index.js', defaultExtension: 'js' },
     'minimongo':                  { main: 'index.js', defaultExtension: 'js' },
+      'moment':                  { main: 'moment.js', defaultExtension: 'js' },
+      'mongodb':                  { main: 'index.js', defaultExtension: 'js' },
   };
   var ngPackageNames = [
     'common',

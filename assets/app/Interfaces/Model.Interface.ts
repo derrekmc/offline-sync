@@ -5,7 +5,7 @@ export interface ModelInterface {
     /**
      * "name" Model name
      */
-    __name: string;
+    _name: string;
     /**
      * "attributes" The model properties definition/schema
      */

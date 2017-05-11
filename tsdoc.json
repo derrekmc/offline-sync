@@ -1,0 +1,37 @@
+{
+	"tags":
+	{
+		"allowUnknownTags" : true
+	},
+	"plugins":[
+		 "plugins/markdown"
+		,"/usr/local/lib/node_modules/tsdoc/template/plugins/TSDoc.js"
+	],
+	"opts":
+	{
+		"template"	:"/usr/local/lib/node_modules/tsdoc/template",
+		"recurse"	:"true"
+	},
+	"templates" : {
+		"cleverLinks"     : false,
+		"monospaceLinks"  : false
+	},
+	"source":
+	{
+		"includePattern": "(\\.d)?\\.ts$"
+	},
+	"markdown"  : {
+		"parser"   : "gfm",
+		"hardwrap" : true
+	},
+	"tsdoc":{
+		"source"		:"/Users/derrek/WebstormProjects/sails-angular2-bk/assets/app",
+		"destination"	:"/Users/derrek/WebstormProjects/sails-angular2-bk/docs",
+		"tutorials"		:"",
+		"systemName"	: "sails-angular2-bk",
+		"footer"		: "",
+		"copyright"		: "sails-angular2-bk Copyright © 2017 derrek.",
+		"outputSourceFiles" : true,
+		"commentsOnly": true
+	}
+}

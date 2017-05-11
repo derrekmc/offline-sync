@@ -1,4 +1,5 @@
 import { StoreInterface } from "../interfaces/Store.Interface";
+import {Session} from "./Session"
 
 export class Store implements StoreInterface {
 
@@ -11,22 +12,47 @@ export class Store implements StoreInterface {
         this._name = dbName;
     }
 
-    write(collection: string, object: Object) {
-        this.setItem(collection, object);
-        return object;
+    // public authenticate(email, password){
+    //     let user = {identity: email, password: password};
+    //     this.socket
+    //         .post('/auth/local', user, (jwt, res) => {
+    //             switch(res.statusCode) {
+    //                 case 200:
+    //                     console.log("Authenticated successfully");
+    //                     Session.setVal('user', res.data);
+    //                     Session.isAuthenticated = true;
+    //                     break;
+    //                 default:
+    //                 case 403:
+    //                     console.error("Access denied");
+    //                     break;
+    //             }
+    //         });
+    // }
+
+    write(collectionName: string, entireCollection: Object) {
+        this.setItem(collectionName, entireCollection);
+        return entireCollection;
     }
 
+    /**
+     * Create one in a collection
+     * @param collection
+     * @param key
+     * @param object
+     * @returns {Object}
+     */
     create(collection: string, key: string, object: Object) {
         this.setItem(collection + this.delimiter + key, object);
         return object;
     }
 
     read(collection: string): any
-    read(collection: string, key: string): any {
+    read(collection: string, key?: string): any {
 
         var result = this.getItem(collection);
         if(result == null) {
-            console.log("no results")
+            console.log("no results");
             result = [];
         }
         return result;

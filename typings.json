@@ -1,0 +1,7 @@
+{
+  "name": "sails-angular2",
+  "dependencies": {
+    "debug": "registry:npm/debug#2.0.0+20160723033700",
+    "lodash": "registry:npm/lodash#4.0.0+20161015015725"
+  }
+}

@@ -1,13 +1,34 @@
-# sails-angular2
+# Angular 2 - sails offline - online mobile sync
+##### Sails-offline mode for mobile devices
+#
+#
+---
+#
+### Install & Launch
+```
+npm install
+npm start
+```
 
-A sample Sails and Angular 2 starter app
+### Test
+```
+npm test
+```
 
-To run this you will need typescript compiler and npm/node installed and setup.
+### Environmental Variables
 
-#Steps
+`MONGO_URL` - Mongo database host url. Used for the primary data storage.
 
-`npm install`
+`REDIS_URL` - Redis server host url. Used for socket clustering and clustered session support
 
-`tsc`
+`db` - database namespace
 
-`sails lift`
+`prefix` - Session prefix
+
+`maxAge` - Max cookie age
+
+`secret` - Your applications secret identifier
+
+```
+MONGO_URL="mongodb://credentials:password@yourmongodbserver.com:port/db" npm start
+```

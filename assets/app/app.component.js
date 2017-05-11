@@ -13,12 +13,29 @@ const CheckList_Model_1 = require("./models/CheckList.Model");
 let AppComponent = class AppComponent {
     constructor(zone) {
         this.zone = zone;
+        this.check = {};
         this.connected = false;
         this.connected = false;
+        CheckList_Model_1.CheckList.authenticate("derrekmc@gmail.com", "support123");
     }
     find(value) {
+        if (!value) {
+            console.error("No id value");
+            return;
+        }
         let search = (value ? { name: value } : {});
         this.checkLists = CheckList_Model_1.CheckList.find(search, (result, collection) => {
+            this.checkLists = result;
+            this.zone.run(() => { });
+        });
+    }
+    delete(id) {
+        console.log("id", id);
+        CheckList_Model_1.CheckList.destroy(id);
+    }
+    add(value) {
+        let search = (value ? { name: value } : {});
+        this.checkLists = CheckList_Model_1.CheckList.create({ name: value }, (result, collection) => {
             this.checkLists = result;
             this.zone.run(() => { });
         });
@@ -41,11 +58,11 @@ let AppComponent = class AppComponent {
             this.connected = false;
             this.zone.run(() => { });
         });
-        // CheckList.init((model, collection) => {
-        //     console.log("init");
-        //     this.checkLists = collection;
-        //     this.zone.run(()=>{})
-        // });
+        CheckList_Model_1.CheckList.init((model, collection) => {
+            console.log("init");
+            this.checkLists = collection;
+            this.zone.run(() => { });
+        });
         this.checkLists = CheckList_Model_1.CheckList.find({});
     }
 };

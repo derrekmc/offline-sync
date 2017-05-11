@@ -1,4 +1,4 @@
-import { Model } from "../services/Model";
+import { Model } from "../services/model";
 
 export let CheckList = new Model("checklist", {
     checks: {
